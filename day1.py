@@ -13,4 +13,18 @@ def sum_of_valid_numbers(inputdata):
             valid_integers.append(int(c))
     return sum(valid_integers)
 
-print(sum_of_valid_numbers(inp))
+# part 2
+
+
+def sum_of_valid_numbers_halfway_ahead(inputdata):
+    valid_integers = []
+    orginal_length = len(inputdata)
+    halfway = int(len(inputdata)/2)
+    # copy first digit to end to simulate cirular behaviour
+    inputdata = ''.join((inputdata, inputdata[0:halfway+1]))
+    for i, c in enumerate(inputdata):
+        if orginal_length == i:
+            break
+        if c == inputdata[i + halfway]:
+            valid_integers.append(int(c))
+    return sum(valid_integers)

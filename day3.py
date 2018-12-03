@@ -9,14 +9,6 @@ class Fabric:
     heigth: int = 1000
     claim: np.int = np.empty((width, heigth), dtype=np.int)
 
-@dataclass
-class FabricSlice(Fabric):
-    claim_id: str = None
-    left_edge: int = 0
-    top_edge: int = 0
-    slice_width: int = 0
-    slice_heiht: int = 0
-
 
 with open('day3_input.txt') as f:
     content = f.readlines()

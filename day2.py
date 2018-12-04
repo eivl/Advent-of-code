@@ -40,3 +40,6 @@ for combi in itertools.combinations(content, 2):
     if similar_chars:
         print(''.join(similar_chars))
         break
+
+def foo():
+    return {0} > {1}

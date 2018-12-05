@@ -1,5 +1,8 @@
+from timeit import default_timer as timer
+start = timer()
 from collections import defaultdict
 import operator
+
 
 with open('day4_input.txt') as f:
     content = f.readlines()
@@ -28,11 +31,9 @@ for line in sorted(content):
 chosen_id = max(guards.items(), key=operator.itemgetter(1))[0]
 chosen_min = max(max_sleep[chosen_id].items(), key=operator.itemgetter(1))[0]
 
-result = chosen_id * chosen_min
-print(result)
+result_p1 = chosen_id * chosen_min
 
 #part2
-
 maximum_guards_asleep = 0
 for guard_id, element in max_sleep.items():
     current_max = max(element.items(), key=operator.itemgetter(1))[1]
@@ -40,5 +41,7 @@ for guard_id, element in max_sleep.items():
         chosen_id = guard_id
         maximum_guards_asleep = current_max
 chosen_min = max(max_sleep[chosen_id].items(), key=operator.itemgetter(1))[0]
-result = chosen_id * chosen_min
-print(result)
+result_p2 = chosen_id * chosen_min
+end = timer()
+print(end - start)
+print(result_p1, result_p2)

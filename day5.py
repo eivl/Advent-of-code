@@ -1,6 +1,9 @@
 from day5_input import DAY5_INPUT
 import string
 from timeit import default_timer as timer
+from multiprocessing import Pool
+
+
 start = timer()
 
 def part1():
@@ -19,8 +22,6 @@ result, stack = part1()
 end = timer()
 print(result)
 print(end - start)
-start = timer()
-
 
 def part2(DAY5_INPUT):
     shortest_poly = None
@@ -41,11 +42,6 @@ def part2(DAY5_INPUT):
             shortest_poly = stack_length
     return shortest_poly
 
-result = part2(DAY5_INPUT)
-end = timer()
-print(result)
-print(end - start)
-
 
 def part2_redone(test_polymer, DAY5_INPUT=DAY5_INPUT):
     shortest_poly = None
@@ -64,7 +60,6 @@ def part2_redone(test_polymer, DAY5_INPUT=DAY5_INPUT):
         shortest_poly = stack_length
     return shortest_poly
 
-from multiprocessing import Pool
 pool = Pool()
 start = timer()
 result = pool.map(part2_redone, string.ascii_lowercase)

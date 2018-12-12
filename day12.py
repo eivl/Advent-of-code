@@ -77,7 +77,7 @@ crazy_gen = 50_000_000_000
 
 def find_stable_solution(array, confidence=10):
     '''
-    Find
+    Find a stable relative solutions, return the indexes and the generation
     '''
     running_stability_score = 0
     prev = 0

@@ -71,11 +71,9 @@ def get_indexs(array):
 
 print(sum_binary_array(calculate_generation(binary_state, 20)))
 
+#part2
+
 crazy_gen = 50_000_000_000
-# at generation 130 the plants have stabilized and now you just have to offset the indexes.. a programatic solution is to come later.
-baseline = 130
-stable_indexes = [100, 105, 111, 118, 123, 128, 134, 142, 150, 158, 163, 168, 173, 181, 189, 198, 208, 213, 219, 227]
-print(sum([i+(crazy_gen-baseline) for i in stable_indexes]) - 100)
 
 def find_stable_solution(array, confidence=10):
     '''

@@ -10,7 +10,6 @@ def binary_to_string(array):
 
 PADDING = 5
 RULE_LENGHT = 5
-generations = 115
 
 initial_state = content.pop(0).split()[2]
 initial_state = '.'*PADDING + initial_state + '.'*PADDING # added padding, thanks Sedsarq

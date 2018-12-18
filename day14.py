@@ -17,7 +17,8 @@ def sum_digits(n):
 
 elf1 = 0
 elf2 = 1
-
+from timeit import default_timer as timer
+start = timer()
 scoreboard = [3,7]
 seq = list_from_number(puzzle_input)
 
@@ -30,8 +31,6 @@ for _ in range(puzzle_input*36): # estimating the size
         scoreboard.append(list_from_number(current_score)[1])
     elf1 = (elf1 + (scoreboard[elf1] + 1))%len(scoreboard)
     elf2 = (elf2 + (scoreboard[elf2] + 1))%len(scoreboard)
-    if elf1 == elf2:
-        elf2 += 1
     if seq == scoreboard[-5:]: # does not work
         print(scoreboard[-5:])
         break
@@ -43,3 +42,6 @@ for i in range(len(scoreboard)):
     if seq == scoreboard[i:i+6]:
         print(i)
         break
+end = timer()
+
+print(end-start)

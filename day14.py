@@ -1,3 +1,5 @@
+from timeit import default_timer as timer
+start = timer()
 puzzle_input = 580741
 
 def list_from_number(n):
@@ -42,6 +44,10 @@ for i in range(len(scoreboard)):
     if seq == scoreboard[i:i+6]:
         print(i)
         break
+<<<<<<< HEAD
 end = timer()
 
+=======
+end=timer()
+>>>>>>> 76cafc6dece7a6a52e117d45d5ec8e3d39a8914d
 print(end-start)

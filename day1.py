@@ -5,9 +5,9 @@ with open('day1_input.txt') as f:
     result = f.readlines()
 result = [int(line.strip()) for line in result]
 
-for num_a, num_b in combinations(result, 2):
-    if num_a + num_b == 2020:
-        print(num_a*num_b)
+for num in result:
+    if 2020 - num in result:
+        print(num*(2020-num))
         break
 
 

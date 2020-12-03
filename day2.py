@@ -32,20 +32,3 @@ for line in data:
         count += 1
 
 print(count)
-
-
-count = 0
-finalcount = 0
-for x in listx:
-    listy = x.split(',')
-    print(listy)
-    for x in listy[3]:
-        try:
-            no = x[int(listy[1])]
-        except IndexError:
-            continue
-        if listy[2] == x[int(listy[0])] or listy[2] == no:
-            finalcount += 1
-    count = 0
-print(finalcount)
-print(len(listx)

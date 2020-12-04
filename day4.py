@@ -1,58 +1,59 @@
+from pprint import pprint
+import re
+
+required = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}
+
 with open('day4_input.txt') as f:
-    result = f.readlines()
-result = [line.strip() for line in result]
+    result = f.read()
 
-test_ = """ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
-byr:1937 iyr:2017 cid:147 hgt:183cm
 
-iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
-hcl:#cfa07d byr:1929
 
-hcl:#ae17e1 iyr:2013
-eyr:2024
-ecl:brn pid:760753108 byr:1931
-hgt:179cm
+def is_valid(passport):
+    return not any(required - passport.keys())
 
-hcl:#cfa07d eyr:2025 pid:166559648
-iyr:2011 ecl:brn hgt:59in"""
 
-print(result)
-check = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
-temp = []
-inner = []
-count = 0
-for items in result:
-    if items:
-        inner.extend(items.split())
-        continue
-    my_dict = dict(item.split(':') for item in inner)
-    if all(c in my_dict for c in check):
-        byr = int(my_dict['byr'])
-        if not 1920 <= byr <= 2020:
-            continue
-        iyr = int(my_dict['iyr'])
+passports = []
+for chunk in result.split('\n\n'):
+    matches = re.findall(r'(\w+):(\S+)', chunk)
+    passports.append({key: value for key, value in matches})
+
+print(sum(map(is_valid, passports)))
+
+
+def is_valid_b(passport):
+    try:
+        byr = int(passport['byr'])
+        if not 1920 <= byr <= 2002:
+            return False
+        iyr = int(passport['iyr'])
         if not 2010 <= iyr <= 2020:
-            continue
-        eyr = int(my_dict['eyr'])
+            return False
+        eyr = int(passport['eyr'])
         if not 2020 <= eyr <= 2030:
-            continue
-        if 'in' in my_dict['hgt']:
-            h = int(my_dict['hgt'][:-2])
-            if not 59 <= h <= 76:
-                continue
-        elif 'cm' in my_dict['hgt']:
-            h = int(my_dict['hgt'][:-2])
-            if not 150 <= h <= 193:
-                continue
+            return False
+        hgt = passport['hgt']
+        match = re.match(r'(\d+)(cm|in)', hgt)
+        height, unit = match[1], match[2]
+        if unit == 'cm':
+            if not 150 <= int(height) <= 193:
+                return False
+        elif unit == 'in':
+            if not 59 <= int(height) <= 76:
+                return False
         else:
-            continue
-        if '#' not in my_dict['hcl']:
-            continue # feil?
-        if not my_dict['ecl'] in 'amb blu brn gry grn hzl oth'.split():
-            continue
-        if not len(my_dict['pid']) == 9:
-            continue
-        count += 1
-    inner = []
+            return False
+        hcl = passport['hcl']
+        if hcl[0] != '#' or len(hcl) != 7:
+            return False
+        ecl = passport['ecl']
+        if ecl not in ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'):
+            return False
+        pid = passport['pid']
+        if not pid.isdigit() or len(pid) != 9:
+            return False
+        return True
+    except Exception:
+        return False
 
-print(count)
+
+print(sum(map(is_valid_b, passports)))

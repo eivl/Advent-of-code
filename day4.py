@@ -104,3 +104,4 @@ with open('day4_input.txt') as f:
 
 print(part_a(result))
 print(part_b(result))
+

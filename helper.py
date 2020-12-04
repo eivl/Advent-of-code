@@ -13,3 +13,10 @@ def measure(func):
             end_ = time() - start
             print(f"Exe-time of {func.__name__}: {end_} ms")
     return _time_it
+
+
+def validate_hair_colour(hair_colour):
+    """Validate if the passport has valid hair colour"""
+    return False if (hair_colour[0] != '#' or len(hair_colour) != 7) else True
+
+print(validate_hair_colour('#d345abc'))

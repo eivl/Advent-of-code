@@ -1,4 +1,5 @@
 from math import prod
+from helper import measure
 
 
 with open('day3_input.txt') as f:
@@ -16,7 +17,7 @@ def is_tree_at_pos(map_, x_pos, y_pos):
     else:
         return False
 
-
+@measure
 def count_trees(map_, x_slope, y_slope):
     count = 0
     current_x, current_y = 0, 0
@@ -36,5 +37,6 @@ Right 5, down 1.
 Right 7, down 1.
 Right 1, down 2.
 """
+
 slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
 print(prod([count_trees(map_, x, y) for x, y in slopes]))

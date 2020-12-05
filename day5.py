@@ -17,8 +17,8 @@ def seat_ids(passes, hash_factor=8):
 print(f'Answer to part1: {max(seat_ids(binary_list))}')
 
 taken = set(seat_ids(binary_list))
-front = 61  # magic number to remove the front
-back = 995  # magic number to remove the back
+front = min(seat_ids(binary_list))
+back = max(seat_ids(binary_list))
 available = set(n for n in range(front, back))
 print(f'Answer to part2: {available.difference(taken)}')
 

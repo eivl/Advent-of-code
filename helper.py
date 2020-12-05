@@ -1,5 +1,6 @@
 from functools import wraps
 from time import perf_counter as time
+import dis
 
 
 def measure(func):
@@ -13,3 +14,13 @@ def measure(func):
             end_ = time() - start
             print(f"Exe-time of {func.__name__}: {end_} ms")
     return _time_it
+
+def mod():
+    return 21 % 20
+
+def addsub():
+    if 19+2 > 20:
+        return 19 + 2 - 20
+
+print(dis.dis(mod))
+print(dis.dis(addsub))

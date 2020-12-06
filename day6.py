@@ -1,7 +1,5 @@
 with open('day6_input.txt') as f:
-    result = f.read()
-
-result = result.split('\n\n')
+    result = f.read().split('\n\n')
 
 print(sum([len(set(''.join(ans.split()))) for ans in result]))
 

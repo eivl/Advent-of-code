@@ -9,12 +9,7 @@ def pairwise(iterable):
     next(b, None)
     return zip(a, b)
 
-count = 0
-for a, b in pairwise(result):
-    if b > a:
-        count += 1
-
-print(count)
+print(sum(1 for a, b in pairwise(result) if b > a))
 
 def threewise(iterable):
     for idx, num in enumerate(result):
@@ -23,8 +18,5 @@ def threewise(iterable):
             break
         yield total
 
-count = 0
-for a, b in pairwise(threewise(result)):
-    if sum(b) > sum(a):
-        count += 1
-print(count)
+
+print(sum([1 for a, b in pairwise(threewise(result)) if sum(b) > sum(a)]))

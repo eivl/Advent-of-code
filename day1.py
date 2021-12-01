@@ -9,7 +9,9 @@ def pairwise(iterable):
     next(b, None)
     return zip(a, b)
 
-print(sum(1 for a, b in pairwise(result) if b > a))
+
+print(sum(b > a for a, b in pairwise(result)))
+
 
 def threewise(iterable):
     for idx, num in enumerate(result):
@@ -19,4 +21,15 @@ def threewise(iterable):
         yield total
 
 
-print(sum([1 for a, b in pairwise(threewise(result)) if sum(b) > sum(a)]))
+print(sum([sum(b) > sum(a) for a, b in pairwise(threewise(result))]))
+
+'''salt-die
+def compare(n):
+    return sum(x < y for x, y in zip(DATA, DATA[n:]))
+
+def part_one():
+    return compare(1)
+
+def part_two():
+    return compare(3)
+'''

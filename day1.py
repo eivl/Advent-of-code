@@ -1,15 +1,30 @@
+from itertools import tee
+
 with open('day1_input.txt') as f:
     result = f.readlines()
 result = [int(line.strip()) for line in result]
 
-sum_part1 = sum((num//3)-2 for num in result)
-print(sum_part1)
+def pairwise(iterable):
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
 
+count = 0
+for a, b in pairwise(result):
+    if b > a:
+        count += 1
 
-def ff(f):
-    if (f//3)-2 < 0:
-        return 0
-    return f//3-2 + ff(f//3-2)
+print(count)
 
-sum_part2 = sum(ff(num) for num in result)
-print(sum_part2)
+def threewise(iterable):
+    for idx, num in enumerate(result):
+        total = result[idx:idx+3]
+        if len(total) != 3:
+            break
+        yield total
+
+count = 0
+for a, b in pairwise(threewise(result)):
+    if sum(b) > sum(a):
+        count += 1
+print(count)

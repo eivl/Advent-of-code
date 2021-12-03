@@ -1,5 +1,5 @@
-from collections import Counter
 from enum import Enum
+
 
 with open('day3_input.txt') as f:
     result = f.readlines()
@@ -7,6 +7,7 @@ result = [line.strip() for line in result]
 
 
 class Gas(Enum):
+    '''The rules for finding the O2 and CO2 rating'''
     O2 = '10'
     CO2 = '01'
 

@@ -40,8 +40,8 @@ epsilon = int(''.join(epsilon), base=2)
 
 print(gamma * epsilon)
 
-ogxygen_rating = find_life_support_rating(result[:], Gas.O2)
+oxygen_rating = find_life_support_rating(result[:], Gas.O2)
 co2_rating = find_life_support_rating(result[:], Gas.CO2)
 
 
-print(ogxygen_rating * co2_rating)
+print(oxygen_rating * co2_rating)

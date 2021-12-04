@@ -63,17 +63,13 @@ result = [number.number
 print(sum(result)*num)
 
 
-winner = None
-removed = 0
-win = []
-to_remove = []
 for i in range(6, len(numbers)+1):
     for idx, board in enumerate(boards):
         if board is None:
             continue
-        checked = check(board.board, numbers[:i+removed])
+        checked = check(board.board, numbers[:i])
         if checked:
-            winner = (checked, numbers[:i+removed][-1])
+            winner = (checked, numbers[:i][-1])
             boards[idx] = None
 
 

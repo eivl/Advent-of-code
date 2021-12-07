@@ -14,16 +14,11 @@ def get_fuel(pos, target):
 
 @measure
 def solution():
-    guess = int(mean(result))
-    fuel = []
-    for i in range(int(median(result)), int(median(result)+1)):
-        fuel.append(sum(abs(n - i) for n in result))
-
-    fuel_ext = []
-    for i in range(guess-1, guess+2):
-        fuel_ext.append(sum(get_fuel(n, i) for n in result))
-
-    return fuel[0] + min(fuel_ext)*1j
+    fuel, = [sum(abs(n - i) for n in result)
+             for i in range(int(median(result)), int(median(result)+1))]
+    fuel_ext = [sum(get_fuel(n, i) for n in result)
+                for i in range(int(mean(result)-1), int(mean(result)+2))]
+    return fuel + min(fuel_ext)*1j
 
 
 print(solution())

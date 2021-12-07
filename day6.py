@@ -48,6 +48,7 @@ print(len(LanternFish.spawns))
 fish = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 for spawncycle in [int(num) for num in result.split(',')]:
     fish[spawncycle] += 1
+print(fish)
 
 @measure
 def number_of_fish(n):

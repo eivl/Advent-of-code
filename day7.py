@@ -1,5 +1,4 @@
 from statistics import mean, median
-
 from aoc_helper import measure
 
 with open('day7_input.txt') as f:

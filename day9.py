@@ -1,6 +1,6 @@
+from aoc_helper import measure
 from math import prod
 import networkx as nx
-from networkx.algorithms.components import connected_components
 
 # heightmap = '''2199943210
 # 3987894921
@@ -27,12 +27,20 @@ def height(node):
 
 
 graph = generate_graph()
-part1 = sum(height(i) + 1 for i in graph
-            if all(height(i) < height(j) for j in graph[i]))
-graph.remove_nodes_from([n for n in graph if height(n) == 9])
-part2 = prod([len(c) for c in sorted(nx.connected_components(graph),
-                                     key=len,
-                                     reverse=True)][:3])
 
-print(part1)
-print(part2)
+@measure
+def part1():
+    return sum(height(i) + 1 for i in graph
+               if all(height(i) < height(j) for j in graph[i]))
+
+
+@measure
+def part2():
+    graph.remove_nodes_from([n for n in graph if height(n) == 9])
+    return prod([len(c) for c in sorted(nx.connected_components(graph),
+                                        key=len,
+                                        reverse=True)][:3])
+
+
+print(part1())
+print(part2())

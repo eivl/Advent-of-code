@@ -9,8 +9,9 @@ for i, row in enumerate(result):
 
 def neighbors(location):
     offsets = (1, 1j, -1, -1j, 1-1j, 1+1j, -1+1j, -1-1j)
-    return (location+diff for diff in offsets
-            if octo.get(location+diff, 0))
+    for diff in offsets:
+        if octo.get(location+diff):
+            yield location+diff
 
 
 count = 0

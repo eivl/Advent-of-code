@@ -47,7 +47,6 @@ def print_grid(grid, width=None, height=None):
 
 
 def fold(grid, instruction):
-    """y=7"""
     direction, idx = instruction
     if direction == 'y':
         for pos in grid.copy():

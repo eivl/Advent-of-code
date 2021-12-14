@@ -40,9 +40,9 @@ def print_grid(grid, width=None, height=None):
     for y in range(height+1):
         for x in range(width+1):
             if grid.get(complex(x, y)):
-                print('#', end='')
+                print('##', end=' ')
             else:
-                print(' ', end='')
+                print('  ', end=' ')
         print()
 
 
@@ -68,10 +68,3 @@ for i, f in enumerate(folds):
         print(len(grid))
 
 print_grid(grid, height=5, width=38)
-
-chars = '''#    ###   ##  ###  ###  ####  ##  ### 
-#    #  # #  # #  # #  # #    #  # #  #
-#    #  # #    #  # #  # ###  #    ### 
-#    ###  # ## ###  ###  #    #    #  #
-#    # #  #  # #    # #  #    #  # #  #
-#### #  #  ### #    #  # ####  ##  ### '''

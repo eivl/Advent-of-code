@@ -1,15 +1,10 @@
+import heapq
+
+
 with open('day1_input.txt') as f:
-    result = f.readlines()
-result = [int(line.strip()) for line in result]
+    result = f.read().split('\n\n')
 
-sum_part1 = sum((num//3)-2 for num in result)
-print(sum_part1)
+sums = [sum(int(num) for num in group.split()) for group in result]
 
-
-def ff(f):
-    if (f//3)-2 < 0:
-        return 0
-    return f//3-2 + ff(f//3-2)
-
-sum_part2 = sum(ff(num) for num in result)
-print(sum_part2)
+print(f'Part1:\t{max(sums)}')
+print(f'Part2:\t{sum(heapq.nlargest(3, sums))}')

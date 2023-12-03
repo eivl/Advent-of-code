@@ -10,12 +10,14 @@ def calibration_value(string):
     total = []
     for line in string.splitlines():
         numbers = [char for char in line if char.isdigit()]
-        first = numbers[0]
-        last = numbers[-1]
-        result = int(first + last)
-        total.append(result)
+        total.append(int(numbers[0] + numbers[-1]))
     return total
 
 
 assert sum(calibration_value(example)) == 142
 
+with open('day1_input.txt') as file:
+    content = file.read()
+
+result = calibration_value(content)
+print(sum(result))
